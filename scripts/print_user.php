@@ -1,6 +1,6 @@
 <?php
-    include "connect.php";
-    include "import_user.php";
+    require_once "connect.php";
+    require_once "import_user.php";
 
     foreach ($data as $row) 
     {

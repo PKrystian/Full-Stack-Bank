@@ -1,5 +1,5 @@
 <?php
-    include "connect.php";
+    require_once "connect.php";
 
     $sql = "SELECT * FROM user";
     $result = $conn->query($sql);
