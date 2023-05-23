@@ -1,8 +1,10 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "bank_db"; // database name
+    $dotenv = parse_ini_file('.env');
+
+    $servername = $dotenv["SERVER"];
+    $username = $dotenv["USERNAME"];
+    $password = $dotenv["PASSWORD"];
+    $database = $dotenv["DATABASE"]; // database name
 
     $conn = new mysqli($servername, $username, $password, $database);
     if ($conn->connect_error) 
