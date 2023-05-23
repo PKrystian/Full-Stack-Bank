@@ -1,7 +1,4 @@
 <?php
-    // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    // $dotenv->load();
-
     $dotenv = parse_ini_file('.env');
 
     $servername = $dotenv["SERVER"];
