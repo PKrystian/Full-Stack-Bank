@@ -13,7 +13,9 @@
 </style>
 </head>
 <body>
-        <table>
+    <?php echo '<a href="./index.php?user_login=1"></a>'; ?>
+
+<!--<table>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -28,9 +30,41 @@
             <th>Role ID</th>
             <th>Account number</th>
         </tr>
+    </table> 
+    <?//php require_once "scripts/print_user.php"; ?> -->
+    
+    <?php
+        echo <<< USER_ACTION
+            <a href="index.php?user_login=1"><input type="button" value="Login"></a>
+            <a href="index.php?user_login=0"><input type="button" value="Register"></a>
+        USER_ACTION;
 
-        <?php require_once "scripts/print_user.php"; ?>
-        
-    </table>
-</body>
+        // Display login form if user_login is not set or is true
+        if (!isset($_GET["user_login"]) || $_GET["user_login"]) {
+            echo <<< LOGIN_FORM
+                <form action="scripts/login.php" method="POST">
+                    <input type="text" name="username" placeholder="Username"> <br>
+                    <input type="text" name="password" placeholder="Password"> <br>
+                    <input type="submit" value="Login">
+                </form>
+            LOGIN_FORM;
+        }
+        // Display register form if user_login is false
+        else if (!$_GET["user_login"]) {
+            echo <<< REGISTER_FORM
+                <form action="scripts/register.php" method="POST">
+                    <input type="text" name="firstname" placeholder="First name"> <br>
+                    <input type="text" name="lastname" placeholder="Last name"> <br>
+                    <input type="text" name="email" placeholder="Email"> <br>
+                    <input type="text" name="password" placeholder="Password"> <br>
+                    <input type="text" name="firstname" placeholder="First name"> <br>
+                    <input type="text" name="firstname" placeholder="First name"> <br>
+                    <input type="text" name="firstname" placeholder="First name"> <br>
+                    <input type="submit" value="Register">
+                </form>
+            REGISTER_FORM;
+        }
+    ?>
+
+    </body>
 </html>
