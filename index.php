@@ -4,35 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank App!</title>
-    <style>
-        table, th, td 
-        {
-            border: 1px solid;
-        }
-</style>
+    <title>Bank XYZ Poland</title>
+    <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
     <?php echo '<a href="./index.php?user_login=1"></a>'; ?>
 
-<!--<table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Password</th>
-            <th>Address</th>
-            <th>PESEL</th>
-            <th>Email</th>
-            <th>Balance</th>
-            <th>Phone number</th>
-            <th>Date opened</th>
-            <th>Role ID</th>
-            <th>Account number</th>
-        </tr>
-    </table> 
-    <?//php require_once "scripts/print_user.php"; ?> -->
-    
     <?php
         echo <<< USER_ACTION
             <a href="index.php?user_login=1"><input type="button" value="Login"></a>
