@@ -1,10 +1,8 @@
 <?php
-    $dotenv = parse_ini_file('.env');
-
-    $servername = $dotenv["SERVER"];
-    $username = $dotenv["USERNAME"];
-    $password = $dotenv["PASSWORD"];
-    $database = $dotenv["DATABASE"]; // database name
+    $servername = getenv("SERVER");
+    $username = getenv("USERNAME");
+    $password = getenv("PASSWORD");
+    $database = getenv("DATABASE"); // database name
 
     $conn = new mysqli($servername, $username, $password, $database);
     if ($conn->connect_error) 
