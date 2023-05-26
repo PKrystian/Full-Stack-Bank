@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Main Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="./styles.css" rel="stylesheet" type="text/css" />
+    <link href="../../style/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="body">
     <div class="navbar-logo-left">
