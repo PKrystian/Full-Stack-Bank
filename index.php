@@ -19,8 +19,8 @@
         // Display login form if user_login is not set or is true
         if (!isset($_GET["user_login"]) || $_GET["user_login"]) {
             echo <<< LOGIN_FORM
-                <form action="scripts/login.php" method="POST">
-                    <input type="text" name="username" placeholder="Username"> <br>
+                <form action="scripts/handlers/user_handler.php?user_action=l" method="POST">
+                    <input type="text" name="email" placeholder="Email"> <br>
                     <input type="text" name="password" placeholder="Password"> <br>
                     <input type="submit" value="Login">
                 </form>
@@ -29,14 +29,14 @@
         // Display register form if user_login is false
         else if (!$_GET["user_login"]) {
             echo <<< REGISTER_FORM
-                <form action="scripts/register.php" method="POST">
-                    <input type="text" name="firstname" placeholder="First name"> <br>
-                    <input type="text" name="lastname" placeholder="Last name"> <br>
+                <form action="scripts/handlers/user_handler.php?user_action=r" method="POST">
+                    <input type="text" name="first_name" placeholder="First name"> <br>
+                    <input type="text" name="last_name" placeholder="Last name"> <br>
                     <input type="email" name="email" placeholder="Email"> <br>
                     <input type="password" minlength="8" name="password" placeholder="Password"> <br>
                     <input type="text" minlength="11" maxlength="11" name="pesel" placeholder="PESEL"> <br>
                     <input type="text" name="address" placeholder="Address"> <br>
-                    <input type="text" name="phone_num" placeholder="Phone number"> <br>
+                    <input type="text" minlength="9" maxlength="9" name="phone_number" placeholder="Phone number"> <br>
                     <input type="submit" value="Register">
                 </form>
             REGISTER_FORM;
