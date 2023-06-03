@@ -32,11 +32,11 @@
                 <form action="scripts/register.php" method="POST">
                     <input type="text" name="firstname" placeholder="First name"> <br>
                     <input type="text" name="lastname" placeholder="Last name"> <br>
-                    <input type="text" name="email" placeholder="Email"> <br>
-                    <input type="text" name="password" placeholder="Password"> <br>
-                    <input type="text" name="firstname" placeholder="First name"> <br>
-                    <input type="text" name="firstname" placeholder="First name"> <br>
-                    <input type="text" name="firstname" placeholder="First name"> <br>
+                    <input type="email" name="email" placeholder="Email"> <br>
+                    <input type="password" minlength="8" name="password" placeholder="Password"> <br>
+                    <input type="text" minlength="11" maxlength="11" name="pesel" placeholder="PESEL"> <br>
+                    <input type="text" name="address" placeholder="Address"> <br>
+                    <input type="text" name="phone_num" placeholder="Phone number"> <br>
                     <input type="submit" value="Register">
                 </form>
             REGISTER_FORM;
