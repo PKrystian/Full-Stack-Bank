@@ -40,15 +40,17 @@
             while($row = $result->fetch_row())
                 $output = $row[0];
 
+            session_start();
+
             if(!$output)
             {
-                echo "<script>alert('Could not log in');</script>";
-                // header("Location: ../../index.php");
+                $_SESSION['error_message'] = 'Could not log in';
+                header("Location: ../../index.php?user_login=1");
             }
             else
             {
-                echo "<script>alert('Logged in succesfully!');</script>";
-                // header("Location: ../../pages/panels/user_panel.php");
+                $_SESSION['success_message'] = 'Logged in successfully!';
+                header("Location: ../../pages/panels/user_panel.php");
             }
 
             exit;
@@ -75,15 +77,17 @@
 
             $result = $conn->query($this->sql);
 
+            session_start();
+
             if(!$result)
             {
-                echo "<script>alert('Could not register');</script>";
-                // header("Location: ../../index.php");
+                $_SESSION['error_message'] = 'Could not register';
+                header("Location: ../../index.php?user_login=0");
             }
             else
             {
-                echo "<script>alert('Account registered succesfully!');</script>";
-                // header("Location: ../../pages/panels/user_panel.php");
+                $_SESSION['success_message'] = 'Registered successfully!';
+                header("Location: ../../pages/panels/user_panel.php");
             }
 
             exit;
