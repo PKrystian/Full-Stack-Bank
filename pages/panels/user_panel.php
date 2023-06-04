@@ -7,6 +7,17 @@
     <link href="../../style/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="body">
+
+    <?php
+      session_start();
+
+      if (isset($_SESSION['success_message']))
+        {
+            echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
+            unset($_SESSION['success_message']);
+        }
+    ?>
+
     <div class="navbar-logo-left">
       <div class="container">
         <div class="navbar-wrapper">

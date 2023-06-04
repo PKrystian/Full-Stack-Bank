@@ -8,13 +8,26 @@
     <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-    <?php echo '<a href="./index.php?user_login=1"></a>'; ?>
+    <?php 
+        session_start();
+
+        echo '<a href="./index.php?user_login=1"></a>'; 
+        
+        if (isset($_SESSION['error_message']))
+        {
+            echo "<script>alert('" . $_SESSION['error_message'] . "');</script>";
+            unset($_SESSION['error_message']);
+        }
+
+    ?>
 
     <?php
         echo <<< USER_ACTION
             <a href="index.php?user_login=1"><input type="button" value="Login"></a>
             <a href="index.php?user_login=0"><input type="button" value="Register"></a>
         USER_ACTION;
+
+
 
         // Display login form if user_login is not set or is true
         if (!isset($_GET["user_login"]) || $_GET["user_login"]) {
