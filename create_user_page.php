@@ -15,10 +15,6 @@
             <h1>Table of Users:</h1>
             <form method="post">
                 <div>
-                    <label>ID</label>
-                    <input type="text" name="account_id" value="<?php echo $account_id ?>">
-                </div>
-                <div>
                     <label>Name</label>
                     <input type="text" name="first_name" value="<?php echo $first_name ?>">
                 </div>
