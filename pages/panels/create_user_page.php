@@ -9,17 +9,11 @@
 </head>
     <body>
 
-        <?php require_once "scripts/edit_user.php"; ?>
+        <?php require_once "../../scripts/create_user.php"; ?>
 
         <div class="create_user">
-            <h1>User info:</h1>
+            <h1>Table of Users:</h1>
             <form method="post">
-                <input type="hidden" name="account_id" value="<?php echo $account_id ?>">
-                <div>
-                <label>ID</label>
-                    <input type="hidden" name="account_id" value="<?php echo $account_id ?>">
-                    <span><?php echo $account_id ?></span>
-                </div>
                 <div>
                     <label>Name</label>
                     <input type="text" name="first_name" value="<?php echo $first_name ?>">
@@ -30,7 +24,7 @@
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type="text" name="password" value="<?php echo $password ?>">
+                    <input type="password" name="password" minlength="8" value="<?php echo $password ?>">
                 </div>
                 <div>
                     <label>Address</label>
@@ -38,27 +32,27 @@
                 </div>
                 <div>
                     <label>PESEL</label>
-                    <input type="text" name="PESEL" value="<?php echo $PESEL ?>">
+                    <input type="text" name="PESEL" minlength="11" maxlength="11" value="<?php echo $PESEL ?>">
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" value="<?php echo $email ?>">
+                    <input type="email" name="email" value="<?php echo $email ?>">
                 </div>
                 <div>
                     <label>Balance</label>
-                    <input type="text" name="balance" value="<?php echo $balance ?>">
+                    <input type="number" name="balance" value="<?php echo $balance ?>">
                 </div>
                 <div>
                     <label>Phone number</label>
-                    <input type="text" name="phone_number" value="<?php echo $phone_number ?>">
+                    <input type="tel" name="phone_number" minlength="9" maxlength="9" value="<?php echo $phone_number ?>">
                 </div>
                 <div>
                     <label>Date opened</label>
-                    <input type="text" name="date_opened" value="<?php echo $date_opened ?>">
+                    <input type="datetime-local" name="date_opened" value="<?php echo $date_opened ?>">
                 </div>
                 <div>
                     <label>Role ID</label>
-                    <input type="text" name="role_id" value="<?php echo $role_id ?>">
+                    <input type="text" name="role_id" minlength="1" maxlength="1" value="<?php echo $role_id ?>">
                 </div>
                 <div>
                     <label>Account number</label>
@@ -69,7 +63,7 @@
                         <button type="submit">Submit</button>
                     </div>
                     <div>
-                        <a href="./admin_page.php" type="submit">Cancel</a>
+                        <a href="./admin_panel.php" type="submit">Cancel</a>
                     </div>
                 </div>
             </form>

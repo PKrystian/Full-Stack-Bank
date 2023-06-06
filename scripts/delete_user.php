@@ -9,6 +9,6 @@
         $conn->query($sql);
     }
 
-    header("Location: ../admin_page.php");
+    header("Location: ../pages/panels/admin_panel.php");
     exit;
 ?>
