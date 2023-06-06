@@ -53,7 +53,19 @@
 
                 $this->assign_session_attributes($conn);
 
-                header("Location: ../../pages/panels/user_panel.php");
+                switch($_SESSION[$this::ROLE_ID])
+                {
+                    case "a":
+                        header("Location: ../../pages/panels/admin_panel.php");
+                        break;
+                    case "c":
+                        // todo add consultant panel
+                        header("Location: ../../pages/panels/user_panel.php");
+                        break;
+                    default:
+                        header("Location: ../../pages/panels/user_panel.php");
+                        break;
+                }
             }
 
             exit;
