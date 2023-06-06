@@ -47,7 +47,7 @@
                   switch ($_SESSION['role_id'])
                   {
                     case 'a':
-                      header("Location: ../panels/admin_panel.php");
+                      echo "Admin";
                       break;
 
                     case 'c':
