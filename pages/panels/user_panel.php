@@ -34,10 +34,32 @@
             </ul>
           </nav>
           <div class="div-block-account-info">
-            <img src="/img/user-icon.svg" width="40" class="user-icon" />
+            <img src="../img/user-icon.svg" width="40" class="user-icon" />
             <div class="div-block-account-info-text">
-              <div class="user-name"><b>first name Last Name</b></div>
-              <div class="user-type">account type</div>
+              <div class="user-name">
+                <b>
+                  <?php echo isset($_SESSION['first_name']) && isset($_SESSION['last_name']) ? $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] : ''; ?>
+                </b>
+              </div>
+              <div class="user-type">
+                <?php 
+                  echo isset($_SESSION['role_id']) ? '' : 'Unknown';
+                  switch ($_SESSION['role_id'])
+                  {
+                    case 'a':
+                      echo 'Admin';
+                      break;
+
+                    case 'c':
+                      echo 'Consultant';
+                      break;
+
+                    case 'u':
+                      echo 'User';
+                      break;
+                  }
+                ?>
+              </div>
             </div>
           </div>
           <a href="#" class="logout-button w-button">LOG OUT</a>
@@ -48,11 +70,17 @@
       <h1 class="heading">Accounts</h1>
       <div class="div-block-accounts">
         <div>
-          <h5 class="account-info-1">first name Last Name</h5>
-          <h6 class="account-info-2">12 3456 7890 1234 5678 9012 3456</h6>
+          <h5 class="account-info-1">
+            <?php echo isset($_SESSION['first_name']) && isset($_SESSION['last_name']) ? $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] : ''; ?>
+          </h5>
+          <h6 class="account-info-2">
+            <?php echo isset($_SESSION['account_number']) ? $_SESSION['account_number'] : ''; ?>
+          </h6>
         </div>
         <div>
-          <h5 class="account-info-1">72, 17 PLN</h5>
+          <h5 class="account-info-1">
+            <?php echo isset($_SESSION['balance']) ? $_SESSION['balance'] . ' PLN' : ''; ?>
+          </h5>
           <h6 class="account-info-2">available funds</h6>
         </div>
       </div>
@@ -63,8 +91,12 @@
         <img src="/img/blue-card.svg" width="200" />
         <div class="div-block-card-info">
           <div class="card-name">card name</div>
-          <div class="card-number">card number</div>
-          <div class="card-owner">first name Last Name</div>
+          <div class="card-number">
+            <?php echo isset($_SESSION['account_number']) ? $_SESSION['account_number'] : ''; ?>
+          </div>
+          <div class="card-owner">
+            <?php echo isset($_SESSION['first_name']) && isset($_SESSION['last_name']) ? $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] : ''; ?>
+          </div>
         </div>
       </div>
     </section>

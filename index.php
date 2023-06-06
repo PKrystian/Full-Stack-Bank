@@ -33,8 +33,8 @@
         if (!isset($_GET["user_login"]) || $_GET["user_login"]) {
             echo <<< LOGIN_FORM
                 <form action="scripts/handlers/user_handler.php?user_action=l" method="POST">
-                    <input type="text" name="email" placeholder="Email"> <br>
-                    <input type="text" name="password" placeholder="Password"> <br>
+                    <input type="email" name="email" placeholder="Email"> <br>
+                    <input type="password" name="password" placeholder="Password"> <br>
                     <input type="submit" value="Login">
                 </form>
             LOGIN_FORM;
