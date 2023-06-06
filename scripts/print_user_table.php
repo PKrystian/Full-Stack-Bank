@@ -48,7 +48,7 @@
                     <td>{$row["account_number"]}</td>
                     <td>
                         <a href="edit_user_page.php?account_id={$row["account_id"]}">Edit</a>
-                        <a href="scripts/delete_user.php?account_id={$row["account_id"]}">Delete</a>
+                        <a href="../../scripts/delete_user.php?account_id={$row["account_id"]}">Delete</a>
                     </td>
                 </tr>
             DATA;

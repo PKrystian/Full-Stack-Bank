@@ -44,23 +44,7 @@
               <div class="user-type">
                 <?php 
                   echo isset($_SESSION['role_id']) ? '' : 'Unknown';
-                  switch ($_SESSION['role_id'])
-                  {
-                    case 'a':
-                      header("Location: ../panels/admin_panel.php");
-                      break;
-
-                    case 'c':
-                      echo 'Consultant';
-                      break;
-
-                    case 'u':
-                      echo 'User';
-                      break;
-                    default:
-                      echo 'New User';
-                      break;
-                  }
+                  echo "Admin";
                 ?>
               </div>
             </div>
@@ -69,40 +53,34 @@
         </div>
       </div>
     </div>
-    <section class="section">
-      <h1 class="heading">Accounts</h1>
-      <div class="div-block-accounts">
-        <div>
-          <h5 class="account-info-1">
-            <?php echo isset($_SESSION['first_name']) && isset($_SESSION['last_name']) ? $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] : ''; ?>
-          </h5>
-          <h6 class="account-info-2">
-            <?php echo isset($_SESSION['account_number']) ? $_SESSION['account_number'] : ''; ?>
-          </h6>
-        </div>
-        <div>
-          <h5 class="account-info-1">
-            <?php echo isset($_SESSION['balance']) ? $_SESSION['balance'] . ' PLN' : ''; ?>
-          </h5>
-          <h6 class="account-info-2">available funds</h6>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <h1 class="heading">Your cards</h1>
-      <div class="div-block-cards">
-        <img src="../img/blue-card.svg" width="200" />
-        <div class="div-block-card-info">
-          <div class="card-name">card name</div>
-          <div class="card-number">
-            <?php echo isset($_SESSION['account_number']) ? $_SESSION['account_number'] : ''; ?>
-          </div>
-          <div class="card-owner">
-            <?php echo isset($_SESSION['first_name']) && isset($_SESSION['last_name']) ? $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] : ''; ?>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div>
+        <h1>Table of Users:</h1>
+        <form action="admin_panel.php" method="GET">
+            <input type="text" name="search" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+        <a href="create_user_page.php"><input type="button" value="Add User"></a><br></br>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Password</th>
+                <th>Address</th>
+                <th>PESEL</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Phone number</th>
+                <th>Date opened</th>
+                <th>Role ID</th>
+                <th>Account number</th>
+                <th>Action</th>
+            </tr>
+
+            <?php require_once "../../scripts/print_user_table.php"; ?>
+            
+        </table>
+    </div>
     <script src="./scipts.js" type="text/javascript"></script>
   </body>
 </html>

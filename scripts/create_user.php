@@ -60,7 +60,7 @@
             $role_id = "";
             $account_number = "";
 
-            header("Location: ./admin_page.php");
+            header("Location: ./admin_panel.php");
             exit;
 
         } while(false);
