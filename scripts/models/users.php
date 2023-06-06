@@ -50,6 +50,9 @@
             else
             {
                 $_SESSION['success_message'] = 'Logged in successfully!';
+
+                $this->assign_session_attributes($conn);
+
                 header("Location: ../../pages/panels/user_panel.php");
             }
 
@@ -91,6 +94,32 @@
             }
 
             exit;
+        }
+
+        private function assign_session_attributes($conn)
+        {
+            $this->sql = 'SELECT ' 
+                        . $this::FIRST_NAME . ', ' 
+                        . $this::LAST_NAME . ', '
+                        . $this::BALANCE . ', '
+                        . $this::ACCOUNT_NUMBER . ', '
+                        . $this::ROLE_ID .
+                    ' FROM ' 
+                        . $this::TABLE_NAME .
+                    ' WHERE '
+                        . $this::EMAIL . " = '" . $this->email . "'";
+
+            $result = $conn->query($this->sql);
+            var_dump($this->sql);
+
+            while ($row = $result->fetch_assoc()) 
+            {
+                $_SESSION[$this::FIRST_NAME] = $row[$this::FIRST_NAME];
+                $_SESSION[$this::LAST_NAME] = $row[$this::LAST_NAME];
+                $_SESSION[$this::BALANCE] = $row[$this::BALANCE];
+                $_SESSION[$this::ACCOUNT_NUMBER] = $row[$this::ACCOUNT_NUMBER];
+                $_SESSION[$this::ROLE_ID] = $row[$this::ROLE_ID];
+            }
         }
     }
 ?>
