@@ -53,6 +53,8 @@
 
                 $this->assign_session_attributes($conn);
 
+                $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
+
                 switch($_SESSION[$this::ROLE_ID])
                 {
                     case "a":
@@ -102,7 +104,26 @@
             else
             {
                 $_SESSION['success_message'] = 'Registered successfully!';
-                header("Location: ../../pages/panels/user_panel.php");
+
+                $_SESSION['success_message'] = 'Logged in successfully!';
+
+                $this->assign_session_attributes($conn);
+
+                $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
+
+                switch($_SESSION[$this::ROLE_ID])
+                {
+                    case "a":
+                        header("Location: ../../pages/panels/admin_panel.php");
+                        break;
+                    case "c":
+                        // todo add consultant panel
+                        header("Location: ../../pages/panels/user_panel.php");
+                        break;
+                    default:
+                        header("Location: ../../pages/panels/user_panel.php");
+                        break;
+                }
             }
 
             exit;
