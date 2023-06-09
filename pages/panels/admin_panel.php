@@ -11,6 +11,9 @@
     <?php
       session_start();
 
+      if (!isset($_SESSION['current_user_role']) || $_SESSION['current_user_role'] != 'a')
+        header('Location ../error.php');
+
       if (isset($_SESSION['success_message']))
         {
             echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
@@ -43,8 +46,7 @@
               </div>
               <div class="user-type">
                 <?php 
-                  echo isset($_SESSION['role_id']) ? '' : 'Unknown';
-                  echo "Admin";
+                  echo isset($_SESSION['current_user_role']) ? 'Admin' : 'Unknown';
                 ?>
               </div>
             </div>

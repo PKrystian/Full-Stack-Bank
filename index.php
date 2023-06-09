@@ -19,6 +19,9 @@
             unset($_SESSION['error_message']);
         }
 
+        $EMAIL_PATTERN = "[^@\s]+@[^@\s]+\.[^@\s]+";
+        $PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$";
+
     ?>
 
     <?php
@@ -33,8 +36,8 @@
         if (!isset($_GET["user_login"]) || $_GET["user_login"]) {
             echo <<< LOGIN_FORM
                 <form action="scripts/handlers/user_handler.php?user_action=l" method="POST">
-                    <input type="email" name="email" placeholder="Email"> <br>
-                    <input type="password" name="password" placeholder="Password"> <br>
+                    <input type="text" name="email" pattern="$EMAIL_PATTERN" title="Invalid email address" placeholder="Email" required> <br>
+                    <input type="password" name="password" placeholder="Password" required> <br>
                     <input type="submit" value="Login">
                 </form>
             LOGIN_FORM;
@@ -43,13 +46,13 @@
         else if (!$_GET["user_login"]) {
             echo <<< REGISTER_FORM
                 <form action="scripts/handlers/user_handler.php?user_action=r" method="POST">
-                    <input type="text" name="first_name" placeholder="First name"> <br>
-                    <input type="text" name="last_name" placeholder="Last name"> <br>
-                    <input type="email" name="email" placeholder="Email"> <br>
-                    <input type="password" minlength="8" name="password" placeholder="Password"> <br>
-                    <input type="text" minlength="11" maxlength="11" name="pesel" placeholder="PESEL"> <br>
-                    <input type="text" name="address" placeholder="Address"> <br>
-                    <input type="text" minlength="9" maxlength="9" name="phone_number" placeholder="Phone number"> <br>
+                    <input type="text" name="first_name" placeholder="First name" required> <br>
+                    <input type="text" name="last_name" placeholder="Last name" required> <br>
+                    <input type="text" name="email" pattern="$EMAIL_PATTERN" title="Invalid email address" placeholder="Email" required> <br>
+                    <input type="password" minlength="8" name="password" pattern="$PASSWORD_PATTERN" title="Password needs to include one lowercase letter, one uppercase letter, one number and one special character" placeholder="Password" required> <br>
+                    <input type="text" minlength="11" maxlength="11" name="pesel" placeholder="PESEL" required> <br>
+                    <input type="text" name="address" placeholder="Address" required> <br>
+                    <input type="text" minlength="9" maxlength="9" name="phone_number" placeholder="Phone number" required> <br>
                     <input type="submit" value="Register">
                 </form>
             REGISTER_FORM;
