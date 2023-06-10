@@ -37,28 +37,34 @@
             }
 
             $sql = "INSERT INTO user (first_name, last_name, password, address, PESEL,
-            email, balance, phone_number, date_opened, role_id, account_number)" .
-            "VALUES ('$first_name', '$last_name', '$password', '$address', '$PESEL',
-            '$email', '$balance', '$phone_number', '$date_opened', '$role_id', '$account_number')";
-            $result = $conn->query($sql);
+                email, balance, phone_number, date_opened, role_id, account_number) " .
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            if(!$result)
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bind_param('ssssssdsiss',
+                $first_name,
+                $last_name,
+                $password,
+                $address,
+                $PESEL,
+                $email,
+                $balance,
+                $phone_number,
+                $date_opened,
+                $role_id,
+                $account_number
+            );
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            if($stmt->error)
             {
                 echo "<script>alert('Error, Invalid query');</script>";
                 break;
             }
-
-            $first_name = "";
-            $last_name = "";
-            $password = "";
-            $address = "";
-            $PESEL = "";
-            $email = "";
-            $balance = "";
-            $phone_number = "";
-            $date_opened = "";
-            $role_id = "";
-            $account_number = "";
 
             header("Location: ./admin_panel.php");
             exit;

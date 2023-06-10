@@ -33,16 +33,27 @@
 
         public function login($conn)
         {
-            $this->sql = "SELECT count(*) FROM " . $this::TABLE_NAME . " WHERE " . $this::EMAIL . " = '$this->email' AND " . $this::PASSWORD . " = '$this->password'";
+            $this->sql = "SELECT count(*) FROM " 
+                . $this::TABLE_NAME . " WHERE " 
+                . $this::EMAIL . " = ? AND " . $this::PASSWORD . " = ?";
 
-            $result = $conn->query($this->sql);
+            $stmt = $conn->prepare($this->sql);
+
+            $stmt->bind_param('ss',
+                $this->email,
+                $this->password
+            );
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
 
             while($row = $result->fetch_row())
                 $output = $row[0];
 
             session_start();
 
-            if(!$output)
+            if(!$output || $stmt->error)
             {
                 $_SESSION['error_message'] = 'Could not log in';
                 header("Location: ../../index.php?user_login=1");
@@ -76,6 +87,7 @@
         public function register($conn)
         {
             $register_date = date('Y-m-d');
+            $this->generate_account_number();
 
             $this->sql = "INSERT INTO " . $this::TABLE_NAME . " ("
                 . $this::FIRST_NAME . ", " 
@@ -88,15 +100,28 @@
                 . $this::PHONE_NUMBER . ", "
                 . $this::DATE_OPENED . ", "
                 . $this::ROLE_ID . ", "
-                . $this::ACCOUNT_NUMBER . ")" .
-            "VALUES ('$this->first_name', '$this->last_name', '$this->password', '$this->address', '$this->pesel',
-            '$this->email', 0, '$this->phone_number', '$register_date', 'u', '');";
+                . $this::ACCOUNT_NUMBER . ") " .
+            "VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, 'u', ?);";
+            
+            $stmt = $conn->prepare($this->sql);
 
-            $result = $conn->query($this->sql);
+            $stmt->bind_param('sssssssss',
+                $this->first_name,
+                $this->last_name,
+                $this->password,
+                $this->address,
+                $this->pesel,
+                $this->email,
+                $this->phone_number,
+                $register_date,
+                $this->account_number
+            );
+
+            $stmt->execute();
 
             session_start();
 
-            if(!$result)
+            if($stmt->error)
             {
                 $_SESSION['error_message'] = 'Could not register';
                 header("Location: ../../index.php?user_login=0");
@@ -104,8 +129,6 @@
             else
             {
                 $_SESSION['success_message'] = 'Registered successfully!';
-
-                $_SESSION['success_message'] = 'Logged in successfully!';
 
                 $this->assign_session_attributes($conn);
 
@@ -132,18 +155,23 @@
         private function assign_session_attributes($conn)
         {
             $this->sql = 'SELECT ' 
-                        . $this::FIRST_NAME . ', ' 
-                        . $this::LAST_NAME . ', '
-                        . $this::BALANCE . ', '
-                        . $this::ACCOUNT_NUMBER . ', '
-                        . $this::ROLE_ID .
-                    ' FROM ' 
-                        . $this::TABLE_NAME .
-                    ' WHERE '
-                        . $this::EMAIL . " = '" . $this->email . "'";
+                    . $this::FIRST_NAME . ', ' 
+                    . $this::LAST_NAME . ', '
+                    . $this::BALANCE . ', '
+                    . $this::ACCOUNT_NUMBER . ', '
+                    . $this::ROLE_ID .
+                ' FROM ' 
+                    . $this::TABLE_NAME .
+                ' WHERE '
+                    . $this::EMAIL . ' = ?';
 
-            $result = $conn->query($this->sql);
-            var_dump($this->sql);
+            $stmt = $conn->prepare($this->sql);
+
+            $stmt->bind_param('s', $this->email);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
 
             while ($row = $result->fetch_assoc()) 
             {
@@ -153,6 +181,17 @@
                 $_SESSION[$this::ACCOUNT_NUMBER] = $row[$this::ACCOUNT_NUMBER];
                 $_SESSION[$this::ROLE_ID] = $row[$this::ROLE_ID];
             }
+        }
+
+        private function generate_account_number()
+        {
+            $acc_num = "SAVE220";
+            $suffix = strlen($acc_num);
+
+            for ($i = 0; $i < 26 - $suffix; $i++)
+                $acc_num .= strval(rand(0, 9));
+
+            $this->account_number = $acc_num;
         }
     }
 ?>

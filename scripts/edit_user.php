@@ -24,8 +24,16 @@
 
         $account_id = $_GET["account_id"];
 
-        $sql = "SELECT * FROM user WHERE account_id=$account_id";
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM user WHERE account_id = ?";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param('i', $account_id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
         $row = $result->fetch_assoc();
 
         if(!$row)
