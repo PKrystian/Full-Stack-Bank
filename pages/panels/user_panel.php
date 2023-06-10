@@ -27,10 +27,10 @@
           <nav role="navigation">
             <ul role="list" class="nav-menu-two w-list-unstyled">
               <li class="list-item">
-                <a href="#" class="nav-link">Desktop</a>
+                <a href="./user_panel.php" class="nav-link">Desktop</a>
               </li>
-              <li><a href="#" class="nav-link">History</a></li>
-              <li><a href="#" class="nav-link">Transfers</a></li>
+              <li><a href="../transfer_history.php" class="nav-link">History</a></li>
+              <li><a href="../new_transfer.php" class="nav-link">Transfer</a></li>
             </ul>
           </nav>
           <div class="div-block-account-info">
@@ -93,7 +93,7 @@
       <div class="div-block-cards">
         <img src="../img/blue-card.svg" width="200" />
         <div class="div-block-card-info">
-          <div class="card-name">card name</div>
+          <div class="card-name">SAVE Credit Card</div>
           <div class="card-number">
             <?php echo isset($_SESSION['account_number']) ? $_SESSION['account_number'] : ''; ?>
           </div>
@@ -103,6 +103,6 @@
         </div>
       </div>
     </section>
-    <script src="./scipts.js" type="text/javascript"></script>
+    <script src="../../scipts.js" type="text/javascript"></script>
   </body>
 </html>

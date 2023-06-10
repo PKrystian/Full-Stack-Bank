@@ -132,21 +132,23 @@
         private function assign_session_attributes($conn)
         {
             $this->sql = 'SELECT ' 
-                        . $this::FIRST_NAME . ', ' 
-                        . $this::LAST_NAME . ', '
-                        . $this::BALANCE . ', '
-                        . $this::ACCOUNT_NUMBER . ', '
-                        . $this::ROLE_ID .
-                    ' FROM ' 
-                        . $this::TABLE_NAME .
-                    ' WHERE '
-                        . $this::EMAIL . " = '" . $this->email . "'";
+                    . $this::ACCOUNT_ID . ', '
+                    . $this::FIRST_NAME . ', ' 
+                    . $this::LAST_NAME . ', '
+                    . $this::BALANCE . ', '
+                    . $this::ACCOUNT_NUMBER . ', '
+                    . $this::ROLE_ID .
+                ' FROM ' 
+                    . $this::TABLE_NAME .
+                ' WHERE '
+                    . $this::EMAIL . ' = ?';
 
             $result = $conn->query($this->sql);
             var_dump($this->sql);
 
             while ($row = $result->fetch_assoc()) 
             {
+                $_SESSION[$this::ACCOUNT_ID] = $row[$this::ACCOUNT_ID];
                 $_SESSION[$this::FIRST_NAME] = $row[$this::FIRST_NAME];
                 $_SESSION[$this::LAST_NAME] = $row[$this::LAST_NAME];
                 $_SESSION[$this::BALANCE] = $row[$this::BALANCE];
