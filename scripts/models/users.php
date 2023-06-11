@@ -72,8 +72,7 @@
                         header("Location: ../../pages/panels/admin_panel.php");
                         break;
                     case "c":
-                        // todo add consultant panel
-                        header("Location: ../../pages/panels/user_panel.php");
+                        header("Location: ../../pages/panels/consultant_panel.php");
                         break;
                     default:
                         header("Location: ../../pages/panels/user_panel.php");
@@ -140,8 +139,7 @@
                         header("Location: ../../pages/panels/admin_panel.php");
                         break;
                     case "c":
-                        // todo add consultant panel
-                        header("Location: ../../pages/panels/user_panel.php");
+                        header("Location: ../../pages/panels/consultant_panel.php");
                         break;
                     default:
                         header("Location: ../../pages/panels/user_panel.php");

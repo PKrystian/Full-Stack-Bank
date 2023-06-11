@@ -11,7 +11,7 @@
     <?php
       session_start();
 
-      if (!isset($_SESSION["current_user_role"]) || $_SESSION["current_user_role"] != "a")
+      if (!isset($_SESSION["current_user_role"]) || $_SESSION["current_user_role"] != "c")
         header("Location ../error.php");
 
       if (isset($_SESSION["success_message"]))
@@ -24,7 +24,7 @@
     <div class="navbar-logo-left">
       <div class="container">
         <div class="navbar-wrapper">
-          <a href="admin_panel.php">
+          <a href="consultant_panel.php">
             <img src="../img//brand-name.svg" alt="" />
           </a>
           <nav role="navigation"></nav>
@@ -38,7 +38,7 @@
               </div>
               <div class="user-type">
                 <?php 
-                  echo isset($_SESSION["current_user_role"]) ? "Admin" : "Unknown";
+                  echo isset($_SESSION["current_user_role"]) ? "Consultant" : "Unknown";
                 ?>
               </div>
             </div>
@@ -47,34 +47,10 @@
         </div>
       </div>
     </div>
-    <div>
-        <h1>Table of Users:</h1>
-        <form action="admin_panel.php" method="GET">
-            <input type="text" name="search" placeholder="Search">
-            <input type="submit" value="Search">
-        </form>
-        <a href="create_user_page.php"><input type="button" value="Add User"></a><br></br>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Password</th>
-                <th>Address</th>
-                <th>PESEL</th>
-                <th>Email</th>
-                <th>Balance</th>
-                <th>Phone number</th>
-                <th>Date opened</th>
-                <th>Role ID</th>
-                <th>Account number</th>
-                <th>Action</th>
-            </tr>
-
-            <?php require_once "../../scripts/print_user_table.php"; ?>
-            
-        </table>
-    </div>
+    <section class="section">
+      <h1 class="heading">Transaction History</h1>
+      <?php include "../../scripts/history_consultant.php"; ?>
+    </section>
     <script src="./scipts.js" type="text/javascript"></script>
   </body>
 </html>
