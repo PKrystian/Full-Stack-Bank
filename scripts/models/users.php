@@ -33,53 +33,54 @@
 
         public function login($conn)
         {
-            $this->sql = "SELECT count(*) FROM " 
+            $this->sql = "SELECT " . $this::PASSWORD . " FROM " 
                 . $this::TABLE_NAME . " WHERE " 
-                . $this::EMAIL . " = ? AND " . $this::PASSWORD . " = ?";
+                . $this::EMAIL . " = ?";
 
             $stmt = $conn->prepare($this->sql);
 
-            $stmt->bind_param('ss',
-                $this->email,
-                $this->password
-            );
+            $stmt->bind_param('s', $this->email);
 
             $stmt->execute();
 
             $result = $stmt->get_result();
 
-            while($row = $result->fetch_row())
-                $output = $row[0];
+            if ($result->num_rows === 0) 
+            {
+                $_SESSION['error_message'] = 'Invalid email or password';
+                header("Location: ../../index.php?user_login=1");
+                exit;
+            }
+
+            $row = $result->fetch_assoc();
+            $hashed_password = $row[$this::PASSWORD];
 
             session_start();
 
-            if(!$output || $stmt->error)
-            {
-                $_SESSION['error_message'] = 'Could not log in';
+            if (!password_verify($this->password, $hashed_password)) {
+                $_SESSION['error_message'] = 'Invalid email or password';
                 header("Location: ../../index.php?user_login=1");
+                exit;
             }
-            else
+
+            $_SESSION['success_message'] = 'Logged in successfully!';
+
+            $this->assign_session_attributes($conn);
+
+            $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
+
+            switch($_SESSION[$this::ROLE_ID])
             {
-                $_SESSION['success_message'] = 'Logged in successfully!';
-
-                $this->assign_session_attributes($conn);
-
-                $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
-
-                switch($_SESSION[$this::ROLE_ID])
-                {
-                    case "a":
-                        header("Location: ../../pages/panels/admin_panel.php");
-                        break;
-                    case "c":
-                        header("Location: ../../pages/panels/consultant_panel.php");
-                        break;
-                    default:
-                        header("Location: ../../pages/panels/user_panel.php");
-                        break;
-                }
+                case "a":
+                    header("Location: ../../pages/panels/admin_panel.php");
+                    break;
+                case "c":
+                    header("Location: ../../pages/panels/consultant_panel.php");
+                    break;
+                default:
+                    header("Location: ../../pages/panels/user_panel.php");
+                    break;
             }
-
             exit;
         }
 
@@ -104,10 +105,12 @@
             
             $stmt = $conn->prepare($this->sql);
 
+            $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
+
             $stmt->bind_param('sssssssss',
                 $this->first_name,
                 $this->last_name,
-                $this->password,
+                $hashed_password,
                 $this->address,
                 $this->pesel,
                 $this->email,
