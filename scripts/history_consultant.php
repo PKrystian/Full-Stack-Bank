@@ -1,6 +1,6 @@
 <?php
   require_once "connect.php";
-  //  todo, consultant should have an option to edit any value from transaction
+
   $sql = "SELECT * FROM transfers";
   $result = $conn->query($sql);
 
@@ -36,8 +36,14 @@
             <tr><td><b>Sender ID:</b></td><td>$sender_id</td></tr>
             <tr><td><b>Receiver ID:</b></td><td>$receiver_id</td></tr>
             <tr><td><b>Transfer Type:</b></td><td>$transfer_type</td></tr>
+            <tr>
+            <td colspan="2">
+              <a href="../../scripts/edit_transaction.php?transfer_id=$transfer_id">Edit</a>
+              <a href="../../scripts/delete_transaction.php?transfer_id=$transfer_id">Delete</a>
+            </td>
+            </tr>
           </table>
-        </div>
+          </div>
         <br></br>
       DATA;
     }
