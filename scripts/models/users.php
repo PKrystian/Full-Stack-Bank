@@ -87,7 +87,7 @@
         public function register($conn)
         {
             $register_date = date('Y-m-d');
-            $this->generate_account_number();
+            $this->generate_account_number($conn);
 
             $this->sql = "INSERT INTO " . $this::TABLE_NAME . " ("
                 . $this::FIRST_NAME . ", " 
@@ -184,15 +184,33 @@
             }
         }
 
-        private function generate_account_number()
+        private function generate_account_number($conn)
         {
-            $acc_num = "SAVE220";
-            $suffix = strlen($acc_num);
+            $exists = true;
 
-            for ($i = 0; $i < 26 - $suffix; $i++)
-                $acc_num .= strval(rand(0, 9));
+            while($exists) 
+            {
+                $acc_num = "SAVE220";
+                $suffix = strlen($acc_num);
 
-            $this->account_number = $acc_num;
+                for ($i = 0; $i < 26 - $suffix; $i++)
+                    $acc_num .= strval(rand(0, 9));
+
+                $this->account_number = $acc_num;
+                $exists = $this->check_for_existing_acc_num($conn);
+            }
+        }
+        
+        private function check_for_existing_acc_num($conn)
+        {
+            $this->sql = 'SELECT count(*) FROM '
+                            . $this::TABLE_NAME
+                            . ' WHERE '
+                            . $this::ACCOUNT_NUMBER . ' = ' . $this->account_number;
+
+            $result = $conn->query($this->sql);
+
+            return $result;
         }
     }
 ?>
