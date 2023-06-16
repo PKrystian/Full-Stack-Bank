@@ -204,13 +204,19 @@
         private function check_for_existing_acc_num($conn)
         {
             $this->sql = 'SELECT count(*) FROM '
-                            . $this::TABLE_NAME
-                            . ' WHERE '
-                            . $this::ACCOUNT_NUMBER . ' = ' . $this->account_number;
+                . $this::TABLE_NAME
+                . ' WHERE '
+                . $this::ACCOUNT_NUMBER . ' = ?';
 
-            $result = $conn->query($this->sql);
+            $stmt = $conn->prepare($this->sql);
+            $stmt->bind_param('s', $this->account_number);
+            $stmt->execute();
 
-            return $result;
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $count = $row['count(*)'];
+
+            return $count > 0;
         }
     }
 ?>
