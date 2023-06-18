@@ -139,141 +139,97 @@
                             method="POST"
                             class="form"
                             >
-                                <div class="div-block-8">
-                                    <div class="div-block-9">
-                                        <label for="first-name" class="field-label">FIRST NAME</label>
-                                            <input
-                                            type="text"
-                                            class="text-field-2 w-input"
-                                            autofocus="true"
-                                            maxlength="50"
-                                            name="first_name"
-                                            data-name="first-name"
-                                            placeholder="Enter your first name"
-                                            id="first-name"
-                                            required
-                                            />
-                                        <label for="last-name" class="field-label">LAST NAME</label>
-                                            <input
-                                            type="text"
-                                            class="text-field-2 w-input"
-                                            maxlength="50"
-                                            name="last_name"
-                                            data-name="last-name"
-                                            placeholder="Enter your last name"
-                                            id="last-name"
-                                            required
-                                            />
-                                        <label for="email" class="field-label">Email</label>
-                                            <input
-                                            type="text"
-                                            class="text-field-2 w-input"
-                                            maxlength="50"
-                                            name="email"
-                                            data-name="email"
-                                            placeholder="Enter your email"
-                                            id="email"
-                                            pattern="$EMAIL_PATTERN"
-                                            title="Invalid email address"
-                                            required
-                                            />
-                                        <label for="street-adress-4" class="field-label">Password</label>
-                                            <input
-                                            type="password"
-                                            class="text-field-2 w-input"
-                                            maxlength="60"
-                                            name="password"
-                                            data-name="street-adress-2"
-                                            placeholder="Enter your password"
-                                            id="street-adress-5"
-                                            minlength="8"
-                                            pattern="$PASSWORD_PATTERN" 
-                                            title="Password needs to include one lowercase letter, one uppercase letter, one number and one special character"
-                                            required
-                                            />
-                                    </div>
-                                    <div class="div-block-10">
-                                        <label for="street-adress-3" class="field-label">Address</label>
-                                            <input
-                                            type="text"
-                                            class="text-field-2 w-input"
-                                            maxlength="50"
-                                            name="address"
-                                            data-name="street-adress"
-                                            placeholder="Enter your street address"
-                                            id="street-adress-3"
-                                            required
-                                            />
-                                        <label for="phone-number" class="field-label">phone number</label>
-                                            <input
-                                            type="tel"
-                                            class="text-field-2 w-input"
-                                            maxlength="9"
-                                            name="phone_number"
-                                            data-name="phone-number"
-                                            placeholder="e.g. 123456789"
-                                            id="phone-number"
-                                            required
-                                            />
-                                        <div class="div-block-5">
-                                            <div class="div-block-6">
-                                                <label for="pesel" class="field-label">PESEL</label>
-                                                    <input
-                                                    type="text"
-                                                    class="text-field-2 w-input"
-                                                    minlength="11"
-                                                    maxlength="11"
-                                                    name="pesel"
-                                                    data-name="City 2"
-                                                    id="pesel"
-                                                    required
-                                                    />
-                                            </div>
-                                            <div class="div-block-7">
-                                                <label for="country-2" class="field-label">COUNTRY</label>
-                                                    <input
-                                                    type="text"
-                                                    class="text-field-2 w-input"
-                                                    maxlength="256"
-                                                    name="country-2"
-                                                    data-name="Country 2"
-                                                    placeholder="Enter your country"
-                                                    id="country-2"
-                                                    />
-                                            </div>
-                                        </div>
-                                        <div class="div-block-5">
-                                            <div class="div-block-11">
-                                                <label for="zip-code" class="field-label">zip code</label>
-                                                    <input
-                                                    type="text"
-                                                    class="text-field-2 w-input"
-                                                    maxlength="256"
-                                                    name="zip-code"
-                                                    data-name="zip-code"
-                                                    placeholder="Enter your zip code"
-                                                    id="zip-code"
-                                                    />
-                                            </div>
-                                            <div class="div-block-12">
-                                                <label class="w-checkbox">
-                                                    <input
-                                                    type="checkbox"
-                                                    id="checkbox"
-                                                    name="checkbox"
-                                                    data-name="Checkbox"
-                                                    class="w-checkbox-input"
-                                                    />
-                                                    <span class="w-form-label" for="checkbox">I agree to
-                                                        <a href="http://www.example.com" target="_blank">
-                                                            terms &amp; conditions.
-                                                        </a>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="div-block-8">
+                            <div class="div-block-9">
+                              <label for="first-name" class="field-label">FIRST NAME</label
+                              ><input
+                                type="text"
+                                class="text-field-2 w-input"
+                                autofocus="true"
+                                maxlength="256"
+                                name="first-name"
+                                data-name="first-name"
+                                placeholder="Enter your first name"
+                                id="first-name"
+                              /><label for="last-name" class="field-label">LAST NAME</label
+                              ><input
+                                type="text"
+                                class="text-field-2 w-input"
+                                maxlength="256"
+                                name="last-name"
+                                data-name="last-name"
+                                placeholder="Enter your last name"
+                                id="last-name"
+                                required=""
+                              /><label for="phone-number" class="field-label"
+                                >phone number</label
+                              ><input
+                                type="tel"
+                                class="text-field-2 w-input"
+                                maxlength="256"
+                                name="phone-number"
+                                data-name="phone-number"
+                                placeholder="e.g. 123456789"
+                                id="phone-number"
+                                required=""
+                              />
+                            </div>
+                            <div class="div-block-10">
+                              <label for="street-adress-3" class="field-label"
+                                >street address</label
+                              ><input
+                                type="text"
+                                class="text-field-2 w-input"
+                                maxlength="256"
+                                name="street-adress"
+                                data-name="street-adress"
+                                placeholder="Enter your street address"
+                                id="street-adress-3"
+                                required=""
+                              /><label for="street-adress-4" class="field-label"
+                                >street address line 2</label
+                              ><input
+                                type="text"
+                                class="text-field-2 w-input"
+                                maxlength="256"
+                                name="street-adress-2"
+                                data-name="street-adress-2"
+                                placeholder="Enter the second line of your address"
+                                id="street-adress-5"
+                              />
+                              <div class="div-block-5">
+                                <div class="div-block-6">
+                                  <label for="city-2" class="field-label">CITY</label
+                                  ><input
+                                    type="text"
+                                    class="text-field-2 w-input"
+                                    maxlength="256"
+                                    name="city-2"
+                                    data-name="City 2"
+                                    placeholder="Enter your city"
+                                    id="city-2"
+                                    required=""
+                                  />
                                 </div>
+                                <div class="div-block-12">
+                                  <label class="w-checkbox"
+                                    ><input
+                                      type="checkbox"
+                                      id="checkbox"
+                                      name="checkbox"
+                                      data-name="Checkbox"
+                                      class="w-checkbox-input"
+                                    /><span class="w-form-label" for="checkbox"
+                                      >I agree to
+                                      <a href="http://www.example.com" target="_blank"
+                                        >terms &amp; conditions.</a
+                                      ></span
+                                    ></label
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                                 <input
                                 type="submit"
                                 value="Register"

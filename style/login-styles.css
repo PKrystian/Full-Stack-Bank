@@ -51,6 +51,7 @@ textarea {
   margin-bottom: 0;
   font-weight: normal;
   display: inline-block;
+  color: rgba(14, 2, 32, 0.68);
 }
 
 .w-container {
@@ -155,7 +156,7 @@ label {
 }
 
 .container-r {
-  max-width: 770px;
+  max-width: 700px;
   background-color: #fff;
   border-radius: 12px;
   padding: 5vh;
@@ -241,7 +242,7 @@ div-block-11 {
 
 .div-block-12 {
   max-width: 70%;
-  align-items: center;
+  padding-top: 22.5px;
   padding-left: 20px;
   display: flex;
 }
