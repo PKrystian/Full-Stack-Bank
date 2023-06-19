@@ -44,25 +44,17 @@
                 </b>
               </div>
               <div class="user-type">
-                <?php
-                echo isset($_SESSION["role_id"]) ? "" : "Unknown";
-                switch ($_SESSION["role_id"]) 
-                {
-                  case "a":
-                    echo "Admin";
-                    break;
-
-                  case "c":
-                    echo "Consultant";
-                    break;
-
-                  case "u":
-                    echo "User";
-                    break;
-                  default:
-                    echo "New User";
-                    break;
-                }
+              <?php 
+                  echo isset($_SESSION["role_id"]) ? "" : "Unknown";
+                  switch ($_SESSION["role_id"])
+                  {
+                    case "u":
+                      echo "User";
+                      break;
+                    default:
+                      header("Location: ../error.php");
+                      break;
+                  }
                 ?>
               </div>
             </div>
