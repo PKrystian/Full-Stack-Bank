@@ -7,20 +7,26 @@
     <link href="../../style/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="body">
-
-    <?php
-      session_start();
-
-      if (!isset($_SESSION["current_user_role"]) || $_SESSION["current_user_role"] != "a")
-        header("Location ../error.php");
-
-      if (isset($_SESSION["success_message"]))
-        {
-            echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
-            unset($_SESSION["success_message"]);
-        }
-    ?>
-
+    <div class="user-name">
+        <b>
+          <?php echo isset($_SESSION["first_name"]) && isset($_SESSION["last_name"]) ? $_SESSION["first_name"] . " " . $_SESSION["last_name"] : ""; ?>
+        </b>
+      </div>
+      <div class="user-type">
+      <?php 
+          session_start();
+          
+          echo isset($_SESSION["role_id"]) ? "" : "Unknown";
+          switch ($_SESSION["role_id"])
+          {
+            case "a":
+              break;
+            default:
+              header("Location: ../error.php");
+              break;
+          }
+        ?>
+    </div>
     <div class="navbar-logo-left">
       <div class="container">
         <div class="navbar-wrapper">

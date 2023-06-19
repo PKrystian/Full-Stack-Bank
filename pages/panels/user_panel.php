@@ -46,19 +46,11 @@
                   echo isset($_SESSION["role_id"]) ? "" : "Unknown";
                   switch ($_SESSION["role_id"])
                   {
-                    case "a":
-                      echo "Admin";
-                      break;
-
-                    case "c":
-                      echo "Consultant";
-                      break;
-
                     case "u":
                       echo "User";
                       break;
                     default:
-                      echo "New User";
+                      header("Location: ../error.php");
                       break;
                   }
                 ?>
