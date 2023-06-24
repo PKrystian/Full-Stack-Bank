@@ -47,8 +47,8 @@
         </div>
       </div>
     </div>
-    <section class="section">
-      <h1 class="heading">Transaction History</h1>
+    <section class="transaction-history-section">
+      <h1 class="transaction-history-heading">Transaction History</h1>
       <?php include "../../scripts/history_consultant.php"; ?>
     </section>
     <script src="./scipts.js" type="text/javascript"></script>

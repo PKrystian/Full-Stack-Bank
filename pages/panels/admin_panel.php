@@ -48,12 +48,32 @@
       </div>
     </div>
     <div>
-        <h1>Table of Users:</h1>
+        <h3>Table of Users:</h3>
         <form action="admin_panel.php" method="GET">
             <input type="text" name="search" placeholder="Search">
-            <input type="submit" value="Search">
+            <svg xmlns="http://www.w3.org/2000/svg"
+            height="20"
+            name="search-icon" 
+            fill="#505050" 
+            viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,
+            0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,
+            112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
+          </path>
+        </svg>
+            <!-- <input type="submit" value="Search"> -->
         </form>
+        <div class="table-controls"><a href="./admin_panel.php"><svg xmlns="http://www.w3.org/2000/svg" 
+        width="36" 
+        height="36" 
+        fill="#0353a4" 
+        viewBox="0 0 256 256">
+        <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,
+        8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z">
+      </path>
+      </svg></a>
         <a href="create_user_page.php"><input type="button" value="Add User"></a><br></br>
+      </div>
         <table>
             <tr>
                 <th>ID</th>
@@ -68,7 +88,7 @@
                 <th>Date opened</th>
                 <th>Role ID</th>
                 <th>Account number</th>
-                <th>Action</th>
+                <th class = "action-th">Action</th>
             </tr>
 
             <?php require_once "../../scripts/print_user_table.php"; ?>
