@@ -1,6 +1,4 @@
 <?php
-    // :)
-    
     $dotenv = parse_ini_file('.env');
 
     $servername = $dotenv["SERVER"];
