@@ -18,7 +18,7 @@
     {
         if(!isset($_GET["account_id"]))
         {
-            header("Location: ./admin_page.php");
+            header("Location: ./admin_panel.php");
             exit;
         }
 

@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank XYZ Poland</title>
+    <title>Bank Savemander</title>
     <link rel="stylesheet" href="../../style/styles.css">
 </head>
     <body>
-
         <?php require_once "../../scripts/create_user.php"; ?>
+        <div class="user-name">
+            <b>
+                <?php echo isset($_SESSION["first_name"]) && isset($_SESSION["last_name"]) ? $_SESSION["first_name"] . " " . $_SESSION["last_name"] : ""; ?>
+            </b>
+            </div>
+            <div class="user-type">
+            <?php 
+                session_start();
+                
+                echo isset($_SESSION["role_id"]) ? "" : "Unknown";
+                switch ($_SESSION["role_id"])
+                {
+                case "a":
+                    break;
+                default:
+                    header("Location: ../error.php");
+                    break;
+                }
+            ?>
+        </div>
         <div class="create_user">
             <h1 class = "cu-heading">Table of Users:</h1>
             <form method="post">
