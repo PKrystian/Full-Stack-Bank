@@ -1,4 +1,0 @@
-SERVER = 'localhost'
-DATABASE = 'bank_db'
-USERNAME = 'root'
-PASSWORD = ''
