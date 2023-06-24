@@ -1,7 +1,7 @@
 <?php
     // :)
     
-    $dotenv = parse_ini_file('.env');
+    $dotenv = parse_ini_file('env');
 
     $servername = $dotenv["SERVER"];
     $username = $dotenv["USERNAME"];
