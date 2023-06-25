@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Savemander</title>
+    <title>Error 404</title>
+    <link href="../style/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div>
-        <h1> 404 - Sorry, page does not exist </h1>
-        <a href="../scripts/logout.php">Return to index</a>
+    <div class="navbar-logo-left">
+      <div class="container">
+        <div class="navbar-wrapper">
+          <a href="../index.php">
+            <img src="img//brand-name.svg" alt="" />
+          </a>
+        </div>
+      </div>
     </div>
+    <h1> 404 - Sorry, page does not exist </h1>
 </body>
 </html>

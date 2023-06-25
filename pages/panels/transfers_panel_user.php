@@ -77,11 +77,11 @@
           </div>
           <div class="form-group">
             <label for="amount">Amount:</label>
-            <input type="number" step="0.01" id="amount" name="amount" class="input-field" required />
+            <input type="number" step="0.01" id="amount" name="amount" class="input-field" min=0.01 required />
           </div>
           <div class="form-group">
             <label for="receiver_account_number">Receiver Account Number:</label>
-            <input type="text" id="receiver_account_number" name="receiver_account_number" class="input-field" required/>
+            <input type="text" id="receiver_account_number" name="receiver_account_number" minlength=26 maxlength=26 class="input-field" required/>
           </div>
           <div class="form-group">
             <label for="sender_address">Sender Address:</label>

@@ -1,7 +1,7 @@
 <?php
   require_once "connect.php";
 
-  $sql = "SELECT * FROM transfers";
+  $sql = "SELECT * FROM transfers ORDER BY date desc, transfer_id desc";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) 
