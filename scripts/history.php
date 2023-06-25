@@ -2,7 +2,7 @@
   require_once "connect.php";
 
   $user_account_number = $_SESSION["account_number"];
-  $sql = "SELECT * FROM transfers WHERE sender_account_number = '$user_account_number' OR receiver_account_number = '$user_account_number'";
+  $sql = "SELECT * FROM transfers WHERE sender_account_number = '$user_account_number' OR receiver_account_number = '$user_account_number' ORDER BY date desc, transfer_id desc";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) 

@@ -42,49 +42,49 @@
                     <div>
                         <br>
                         <label>Name</label>
-                        <input type="text" name="first_name" value="<?php echo $first_name ?>">
+                        <input type="text" name="first_name" value="<?php echo $first_name ?>" required>
                     </div>
                     <div>
                         <label>Surname</label>
-                        <input type="text" name="last_name" value="<?php echo $last_name ?>">
+                        <input type="text" name="last_name" value="<?php echo $last_name ?>" required>
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" name="password" minlength="8" value="<?php echo $password ?>">
+                        <input type="password" name="password" value="<?php echo $password ?>" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$" required>
                     </div>
                     <div>
                         <label>Address</label>
-                        <input type="text" name="address" value="<?php echo $address ?>">
+                        <input type="text" name="address" value="<?php echo $address ?>" required>
                     </div>
                     <div>
                         <label>PESEL</label>
-                        <input type="text" name="PESEL" minlength="11" maxlength="11" value="<?php echo $PESEL ?>">
+                        <input type="text" name="PESEL" minlength="11" maxlength="11" value="<?php echo $PESEL ?>" required>
                     </div>
                 </div>
                 <div class = "right-info-cu">
                     <div>
                         <label>Email</label>
-                        <input type="email" name="email" value="<?php echo $email ?>">
+                        <input type="email" name="email" value="<?php echo $email ?>" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
                     </div>
                     <div>
                         <label>Balance</label>
-                        <input type="number" name="balance" value="<?php echo $balance ?>">
+                        <input type="number" name="balance" value="<?php echo $balance ?>" required>
                     </div>
                     <div>
                         <label>Phone number</label>
-                        <input type="tel" name="phone_number" minlength="9" maxlength="9" value="<?php echo $phone_number ?>">
+                        <input type="tel" name="phone_number" minlength="9" maxlength="9" value="<?php echo $phone_number ?>" required>
                     </div>
                     <div>
                         <label>Date opened</label>
-                        <input type="datetime-local" name="date_opened" value="<?php echo $date_opened ?>">
+                        <input type="date" name="date_opened" value="<?php echo $date_opened ?>" required>
                     </div>
                     <div>
                         <label>Role ID</label>
-                        <input type="text" name="role_id" minlength="1" maxlength="1" value="<?php echo $role_id ?>">
+                        <input type="text" name="role_id" minlength="1" maxlength="1" value="<?php echo $role_id ?>" required>
                     </div>
                     <div>
                         <label>Account number</label>
-                        <input type="text" name="account_number" value="<?php echo $account_number ?>">
+                        <input type="text" name="account_number" minlength=26 maxlength=26 value="<?php echo $account_number ?>" required>
                     </div>
                 </div>
             </div>

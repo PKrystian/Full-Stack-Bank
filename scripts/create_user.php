@@ -36,6 +36,8 @@
                 break;
             }
 
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
             $sql = "INSERT INTO user (first_name, last_name, password, address, PESEL,
                 email, balance, phone_number, date_opened, role_id, account_number) " .
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -45,7 +47,7 @@
             $stmt->bind_param('ssssssdsiss',
                 $first_name,
                 $last_name,
-                $password,
+                $hashed_password,
                 $address,
                 $PESEL,
                 $email,

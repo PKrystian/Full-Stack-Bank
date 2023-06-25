@@ -80,8 +80,10 @@
                 break;
             }
 
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
             $sql = "UPDATE user ". 
-            "SET account_id = '$account_id', first_name = '$first_name', last_name = '$last_name', password = '$password',
+            "SET account_id = '$account_id', first_name = '$first_name', last_name = '$last_name', password = '$hashed_password',
             address = '$address', PESEL = '$PESEL', email = '$email', balance = '$balance', phone_number = '$phone_number', 
             date_opened = '$date_opened', role_id = '$role_id', account_number = '$account_number'".
             "WHERE account_id = $account_id";
