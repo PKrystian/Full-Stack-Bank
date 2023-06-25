@@ -37,6 +37,8 @@
             $conn->query($new_update_query);
 
             $_SESSION["success_message"] = "Transfer completed successfully!";
+            $_SESSION["balance"] = $sender_balance - $amount;
+
             header("Location: transfers_panel_user.php");
             exit();
             
