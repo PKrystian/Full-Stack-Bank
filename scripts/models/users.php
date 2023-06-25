@@ -223,7 +223,7 @@
         private function generate_random_code()
         {
             $numbers = "0123456789";
-            $length = 6;
+            $length = 4;
             $code = "";
 
             for ($i = 0; $i < $length; $i++) {
@@ -239,10 +239,20 @@
             $code = $saved_code_to;
             $to = $mail_to;
             $subject = "Your Savemander Code";
-            $txt = "Your code is: $code";
-            $headers = "From: savemander@example.com";
-
-            mail($to, $subject, $txt, $headers);
-        }
+            $message = "Dear User,<br><br>";
+            $message .= "Thank you for registering with Savemander. Your verification code is:<br><br>";
+            $message .= "<strong>$code</strong><br><br>";
+            $message .= "Please enter this code on our website to complete your registration.<br><br>";
+            $message .= "If you have any questions or need further assistance, please feel free to contact us.<br><br>";
+            $message .= "Best regards,<br>";
+            $message .= "The Savemander Team";
+        
+            $headers = "From: savemander@example.com\r\n";
+            $headers .= "Reply-To: savemander@example.com\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+        
+            mail($to, $subject, $message, $headers);
+        } 
     }
 ?>
