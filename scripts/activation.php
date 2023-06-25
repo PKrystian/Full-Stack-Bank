@@ -3,7 +3,7 @@
 
     session_start();
 
-    if ($_SESSION['current_user_role'] === 'u') {
+    if ($_SESSION['verification_email'] === 'u') {
         header("Location: ../pages/panels/user_panel.php");
         exit;
     }
@@ -18,14 +18,22 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
+
             $sql = "UPDATE user SET role_id = 'u' WHERE email = ?";
+
             $stmt = $conn->prepare($sql);
+
             $stmt->bind_param("s", $email);
+
             $stmt->execute();
+
             $stmt->close();
             $conn->close();
-            echo "<script>alert('Activation successful, re-login');</script>";
-            header("Location: ../index.php");
+
+            $_SESSION['success_message'] = 'Activation successful';
+
+            header("Location: ../pages/panels/user_panel.php");
+
             exit;
         }
     }

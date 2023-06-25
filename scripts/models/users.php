@@ -53,22 +53,26 @@
             }
 
             $row = $result->fetch_assoc();
+
             $hashed_password = $row[$this::PASSWORD];
-            $role_id = $row[$this::ROLE_ID];
-
-            if ($role_id === 'i') {
-                session_start();
-
-                $code = $this->generate_random_code();
-                $this->mail_code($code, $this->email);
-                $_SESSION['saved_activation_code'] = $code;
-                $_SESSION['verification_role_id'] = $role_id;
-                $_SESSION['verification_email'] = $this->email;
-                header("Location: ../activation.php");
-                exit;
-            }
+            
+            $this->role_id = $row[$this::ROLE_ID];
 
             session_start();
+
+            if ($this->role_id === 'i') {
+                $code = $this->generate_random_code();
+                
+                $this->mail_code($code, $this->email);
+
+                $_SESSION['saved_activation_code'] = $code;
+                $_SESSION['verification_role_id'] = $this->role_id;
+                $_SESSION['verification_email'] = $this->email;
+
+                header("Location: ../activation.php");
+
+                exit;
+            }
 
             if (!password_verify($this->password, $hashed_password)) {
                 $_SESSION['error_message'] = 'Invalid email or password';
@@ -102,6 +106,8 @@
             $register_date = date('Y-m-d');
             $this->generate_account_number($conn);
 
+            $this->role_id = 'i';
+
             $this->sql = "INSERT INTO " . $this::TABLE_NAME . " ("
                 . $this::FIRST_NAME . ", " 
                 . $this::LAST_NAME . ", "
@@ -114,13 +120,13 @@
                 . $this::DATE_OPENED . ", "
                 . $this::ROLE_ID . ", "
                 . $this::ACCOUNT_NUMBER . ") " .
-            "VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, 'i', ?);";
+            "VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?);";
             
             $stmt = $conn->prepare($this->sql);
 
             $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-            $stmt->bind_param('sssssssss',
+            $stmt->bind_param('ssssssssss',
                 $this->first_name,
                 $this->last_name,
                 $hashed_password,
@@ -129,6 +135,7 @@
                 $this->email,
                 $this->phone_number,
                 $register_date,
+                $this->role_id,
                 $this->account_number
             );
 
@@ -141,16 +148,17 @@
                 $_SESSION['error_message'] = 'Could not register';
                 header("Location: ../../index.php?user_login=0");
             }
-            else
-            {
-                $_SESSION['success_message'] = 'Registered successfully!';
 
-                $this->assign_session_attributes($conn);
+            $code = $this->generate_random_code();
 
-                $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
+            $this->mail_code($code, $this->email);
 
-                header("Location: ../../index.php");
-            }
+            $_SESSION['saved_activation_code'] = $code;
+            $_SESSION['verification_role_id'] = $this->role_id;
+            $_SESSION['verification_email'] = $this->email;
+            $_SESSION['current_user_role'] = $this->role_id;
+
+            header("Location: ../activation.php");
 
             exit;
         }
@@ -220,6 +228,7 @@
 
             return $count > 0;
         }
+        
         private function generate_random_code()
         {
             $numbers = "0123456789";
