@@ -63,35 +63,35 @@
         </div>
       </div>
     </div>
-    <section class="section">
+      <section class="section">
       <h1 class="heading">New Transfer</h1>
       <div class="form-wrapper">
         <form action="" method="POST">
           <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="title" class="label">Title:</label>
             <input type="text" id="title" name="title" class="input-field" required />
           </div>
           <div class="form-group">
-            <label for="description">Description:</label>
+            <label for="description" class="label">Description:</label>
             <input type="text" id="description" name="description" class="input-field" required />
           </div>
           <div class="form-group">
-            <label for="amount">Amount:</label>
-            <input type="number" step="0.01" id="amount" name="amount" class="input-field" min=0.01 required />
+            <label for="amount" class="label">Amount:</label>
+            <input type="number" step="0.01" id="amount" name="amount" class="input-field" min="0.01" required />
           </div>
           <div class="form-group">
-            <label for="receiver_account_number">Receiver Account Number:</label>
-            <input type="text" id="receiver_account_number" name="receiver_account_number" minlength=26 maxlength=26 class="input-field" required/>
+            <label for="receiver_account_number" class="label">Receiver Account Number:</label>
+            <input type="text" id="receiver_account_number" name="receiver_account_number" minlength="26" maxlength="26" class="input-field" required/>
           </div>
           <div class="form-group">
-            <label for="sender_address">Sender Address:</label>
+            <label for="sender_address" class="label">Sender Address:</label>
             <input type="text" id="sender_address" name="sender_address" class="input-field" required />
           </div>
           <div class="form-group">
-            <label for="receiver_address">Receiver Address:</label>
+            <label for="receiver_address" class="label">Receiver Address:</label>
             <input type="text" id="receiver_address" name="receiver_address" class="input-field" required/>
           </div>
-          <button type="submit" class="button">Submit</button>
+          <button type="submit" class="tps-button">Submit</button>
         </form>
       </div>
       <?php include "../../scripts/transfers.php"; ?>
