@@ -29,7 +29,8 @@
 
             $stmt->close();
             $conn->close();
-
+            
+            $_SESSION["role_id"] = 'u';
             $_SESSION['success_message'] = 'Activation successful';
 
             header("Location: ../pages/panels/user_panel.php");
