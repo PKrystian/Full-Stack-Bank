@@ -90,30 +90,29 @@ input[type="submit"] {
 .create_user {
   max-width: 500px;
   margin: 10vh auto;
-  background-color:white;
+  background-color: white;
   border-radius: 7%;
-  box-shadow:  20px 20px 95px #cecece,
-              -20px -20px 95px #f2f2f2;
+  box-shadow: 20px 20px 95px #cecece, -20px -20px 95px #f2f2f2;
   padding: 5vh;
 }
 
 .cu-heading {
   font-family: "Montserrat", sans-serif;
-  font-weight:400;
+  font-weight: 400;
 }
 
-.div-block-cu{
+.div-block-cu {
   min-width: 50px;
   justify-content: space-between;
   display: flex;
 }
 
-.left-info-cu{
+.left-info-cu {
   max-width: 50%;
   margin-right: 30px;
 }
 
-.right-info-cu{
+.right-info-cu {
   max-width: 50%;
   display: block;
 }
@@ -145,7 +144,6 @@ input[type="submit"] {
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
-
 }
 
 .create_user button,
@@ -180,6 +178,57 @@ input[type="submit"] {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
 } */
+
+.form-wrapper {
+  margin-top: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  width: 150px;
+  padding-right: 10px;
+  text-align: right;
+  font-weight: 400px;
+}
+
+input[name="amount"]{
+  max-width: 19.5vw;
+}
+
+.input-field {
+  max-width: 20vw;
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.tps-button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  margin: 0 2.5px;
+  background-color: #0353a4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  margin: auto;
+}
+
+.tps-button:hover{
+  background-color: #2a83dd;
+  border: none;
+}
 
 .w-button {
   color: #fff;

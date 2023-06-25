@@ -44,13 +44,66 @@
 <html>
 <head>
     <title>Account Activation</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+
+            h1 {
+                color: #333333;
+                text-align: center;
+                margin-top:20vh;
+            }
+
+            p {
+                color: #666666;
+                text-align: center;
+            }
+
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333333;
+            }
+
+            input[type="text"] {
+                padding: 5px;
+                width: 200px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #0353a4;
+                color: #ffffff;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #2a83dd;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+    </style>
 </head>
 <body>
     <h1>Account Activation</h1>
     <p>Re-login after successful activation</p>
     <form method="POST" action="">
-        <label for="activation_code">Enter your activation code:</label>
-        <input type="text" name="activation_code" id="activation_code" required>
+        <label for="activation_code">Enter your activation code:</label><br>
+        <input type="text" name="activation_code" id="activation_code" required><br><br>
         <input type="submit" value="Activate">
     </form>
 </body>
