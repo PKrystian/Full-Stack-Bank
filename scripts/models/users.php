@@ -33,7 +33,7 @@
 
         public function login($conn)
         {
-            $this->sql = "SELECT " . $this::PASSWORD . " FROM " 
+            $this->sql = "SELECT " . $this::PASSWORD . ", " . $this::ROLE_ID . " FROM " 
                 . $this::TABLE_NAME . " WHERE " 
                 . $this::EMAIL . " = ?";
 
@@ -54,6 +54,19 @@
 
             $row = $result->fetch_assoc();
             $hashed_password = $row[$this::PASSWORD];
+            $role_id = $row[$this::ROLE_ID];
+
+            if ($role_id === 'i') {
+                session_start();
+
+                $code = $this->generate_random_code();
+                $this->mail_code($code, $this->email);
+                $_SESSION['saved_activation_code'] = $code;
+                $_SESSION['verification_role_id'] = $role_id;
+                $_SESSION['verification_email'] = $this->email;
+                header("Location: ../activation.php");
+                exit;
+            }
 
             session_start();
 
@@ -101,7 +114,7 @@
                 . $this::DATE_OPENED . ", "
                 . $this::ROLE_ID . ", "
                 . $this::ACCOUNT_NUMBER . ") " .
-            "VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, 'u', ?);";
+            "VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, 'i', ?);";
             
             $stmt = $conn->prepare($this->sql);
 
@@ -136,18 +149,7 @@
 
                 $_SESSION['current_user_role'] = $_SESSION[$this::ROLE_ID];
 
-                switch($_SESSION[$this::ROLE_ID])
-                {
-                    case "a":
-                        header("Location: ../../pages/panels/admin_panel.php");
-                        break;
-                    case "c":
-                        header("Location: ../../pages/panels/consultant_panel.php");
-                        break;
-                    default:
-                        header("Location: ../../pages/panels/user_panel.php");
-                        break;
-                }
+                header("Location: ../../index.php");
             }
 
             exit;
@@ -218,5 +220,39 @@
 
             return $count > 0;
         }
+        private function generate_random_code()
+        {
+            $numbers = "0123456789";
+            $length = 4;
+            $code = "";
+
+            for ($i = 0; $i < $length; $i++) {
+                $ran_index = rand(0, strlen($numbers) - 1);
+                $code .= $numbers[$ran_index];
+            }
+
+            return $code;
+        }
+
+        private function mail_code($saved_code_to, $mail_to)
+        {
+            $code = $saved_code_to;
+            $to = $mail_to;
+            $subject = "Your Savemander Code";
+            $message = "Dear User,<br><br>";
+            $message .= "Thank you for registering with Savemander. Your verification code is:<br><br>";
+            $message .= "<strong>$code</strong><br><br>";
+            $message .= "Please enter this code on our website to complete your registration.<br><br>";
+            $message .= "If you have any questions or need further assistance, please feel free to contact us.<br><br>";
+            $message .= "Best regards,<br>";
+            $message .= "The Savemander Team";
+        
+            $headers = "From: savemander@example.com\r\n";
+            $headers .= "Reply-To: savemander@example.com\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+        
+            mail($to, $subject, $message, $headers);
+        } 
     }
 ?>
