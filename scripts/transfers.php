@@ -29,7 +29,7 @@
             $receiver_id = $receiver_row["account_id"];
 
             $insert_query = "INSERT INTO transfers (title, description, amount, sender_account_number, receiver_account_number, sender_address, receiver_address, date, sender_id, receiver_id, transfer_type)
-            VALUES ('$title', '$description', $amount, '{$_SESSION["account_number"]}', '$receiver_account_number', '$sender_address', '$receiver_address', '$date', '$sender_id', $receiver_id, '$transfer_type')";
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
             $stmt = $conn->prepare($insert_query);
 
@@ -38,7 +38,7 @@
                 $title,
                 $description,
                 $amount,
-                $_SESSION["account_numer"],
+                $_SESSION["account_number"],
                 $receiver_account_number,
                 $sender_address,
                 $receiver_address,

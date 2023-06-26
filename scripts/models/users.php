@@ -157,7 +157,7 @@
             $_SESSION['verification_role_id'] = $this->role_id;
             $_SESSION['verification_email'] = $this->email;
             $_SESSION['current_user_role'] = $this->role_id;
-            $this->assign_session_attributes($conn);
+
             header("Location: ../activation.php");
 
             exit;
